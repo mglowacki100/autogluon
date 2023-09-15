@@ -112,12 +112,13 @@ class XGBoostModel(AbstractModel):
             if isinstance(early_stopping_rounds, (str, tuple, list)):
                 early_stopping_rounds = self._get_early_stopping_rounds(num_rows_train=num_rows_train, strategy=early_stopping_rounds)
 
-        if num_gpus != 0:
-            params["tree_method"] = "gpu_hist"
-            if "gpu_id" not in params:
-                params["gpu_id"] = 0
-        elif "tree_method" not in params:
-            params["tree_method"] = "hist"
+        # breaking changes in 2.0:
+        # if num_gpus != 0:
+        #     params["tree_method"] = "gpu_hist"
+        #     if "gpu_id" not in params:
+        #         params["gpu_id"] = 0
+        # elif "tree_method" not in params:
+        #     params["tree_method"] = "hist"
 
         try_import_xgboost()
         from xgboost.callback import EvaluationMonitor

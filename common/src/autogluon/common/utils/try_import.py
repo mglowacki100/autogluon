@@ -86,7 +86,7 @@ def try_import_xgboost():
         from pkg_resources import parse_version  # pylint: disable=import-outside-toplevel
 
         xgboost_version = parse_version(xgboost.__version__)
-        min_version = "1.6"
+        min_version = "2.0"
         assert xgboost_version >= parse_version(
             min_version
         ), f'Currently, we only support "xgboost>={min_version}". Installed version: "xgboost=={xgboost.__version__}".'
